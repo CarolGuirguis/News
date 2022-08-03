@@ -40,9 +40,13 @@ body {background-color: rgba(12,39,71,255);
     margin-left: 14rem;
     margin-right: 14rem;
 }
+.emptymiddle{
+   text-align: center;
+}
 .countrymiddle{
     margin-left: 20rem;
     margin-right: 20rem;   
+    margin-top: 5rem;
 }
 .imgcountry{
     width: 100%;
@@ -83,6 +87,23 @@ body {background-color: rgba(12,39,71,255);
   .loader.display{
     display: block;
   }
+  .sizing{
+    width: 8rem;
+    height: 10rem;
+    background-color: white;
+    color: black;
+    text-align: center;
+     margin:0 auto;
+     margin-top: 1rem;
+   
+  }
+  .carousel-inner{
+    display: flex;
+    align-content: center;
+  }
+  
+  
+ 
   @media screen and (max-width: 800px)   {
     .countrymiddle{
         margin-left: 0rem;

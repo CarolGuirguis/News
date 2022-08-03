@@ -26,13 +26,26 @@
     </head>
     <body>
         <div class="container-fluid">
-          <div class="row"> 
-            <div class="col">
-          <div id="countries-module" class="mt-3">
-          <ul id="countries" class="list-unstyled mt-3 "></ul>
+         
+      <div class="row"> 
+        <div class="col">
+          
+          <div id="carouselExampleControls" class="carousel" data-ride="carousel" data-interval="false">
+            <div id="carinner" class="carousel-inner">
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-        </div>
-      </div>
+    </div>
+  </div>
+  
       <div class="row"> 
         <div class="col">
       <div id="country-module" class="mt-3">
@@ -50,6 +63,13 @@
       </div>
     </div>
   </div>
+  <div class="row"> 
+    <div class="col">
+  <div id="emptynews-module" class="mt-3">
+    
+  </div>
+</div>
+</div>
           <script id="countries-template" type="text/template">
             {{#countries}}
                 <li class="item">
@@ -111,6 +131,30 @@
                   </div>
                 </div>
             {{/news}}
+          </script>
+          <script id="emptynews-template" type="text/template">
+            {{#text}}
+                <div class="row emptymiddle">
+                  <div class="col">
+                    <label> {{.}}</label>
+                  </div>
+                  
+                </div>
+                {{/text}}
+          </script>
+          <script id="slider-template" type="text/template">
+            {{#countries}}
+            <div class="carousel-item sizing" id={{cca2}}>
+              <img class="d-block w-100 carouselimg" src={{flags.png}} alt="First slide">
+              <div>
+                  
+                <label>{{name.common}}</label>
+              </div>
+              <div>
+                <label>{{capital}}</label>
+              </div>
+            </div>
+            {{/countries}}
           </script>
         </div>
     </body>

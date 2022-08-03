@@ -14,17 +14,18 @@ init: function () {
   cacheElements: function () {
    
     this.$countries = $("#countries-module");
-    this.$ul = this.$countries.find("ul");
-    this.template = $("#countries-template").html();
-    this.$loader=$("#loader");
+   
     
+    this.$loader=$("#loader");
+    this.$carousel = $("#carinner");
+    this.carouseltemplate=$("#slider-template").html();
   },
   bindEvents: function () {
-    this.$ul.on("click", "li div.tog",this.shownews.bind(this));
    
+    this.$carousel.on("click", "div.carousel-item",this.shownews.bind(this));
   },
   shownews:function(e){
-    
+   
     this.$loader.addClass("display");
     var country=e.currentTarget.id
     this.chosencountry=this.data.find(d => d.cca2 == country);
@@ -32,7 +33,9 @@ init: function () {
     
   },
   render: function () {
-    this.$ul.html(Mustache.render(this.template, { countries: this.data }));
+   
+    this.$carousel.html(Mustache.render(this.carouseltemplate, { countries: this.data }));
+    $('.carousel-item').first().addClass('active');
     
   },
   trial: function () {
@@ -62,25 +65,39 @@ var newscomponent={
 
   cacheElements:function(){
       this.$news = $("#news-module");
+      this.$emptynews = $("#emptynews-module");
       this.template = $("#news-template").html();
+      this.emptytemplate = $("#emptynews-template").html();
       this.$loader=$("#loader");
     },
     bindEvents:function(){
       eventsMediator.on("news.show", this.showcountrynews.bind(this));
     },
     render: function () {
+      if(this.data.length==0){
+        this.$emptynews.html(Mustache.render(this.emptytemplate, {text:"No News available."}));
+      }
+      else{
+        
+          this.$emptynews.html(Mustache.render(this.emptytemplate, {text:""}));
+        
+      }
+     
       this.$news.html(Mustache.render(this.template, { news: this.data}));
+      
+      
       this.$loader.removeClass("display");
     },
     showcountrynews:function(data){
-      
       var url="https://newsapi.org/v2/top-headlines?country="+data.cca2.toLowerCase()+
       "&apiKey=29c976c6813b408bbaea06be29de90be";
     fetch(url)
     .then(response => response.json())
     .then(data => {
+      
       this.data=data.articles
       this.render();
+        
     })
     .catch(err => console.error(err));
     }
